@@ -3,14 +3,11 @@ package com.github.library.app;
 import com.github.library.io.DataReader;
 import com.github.library.model.Book;
 import com.github.library.model.Library;
-import com.github.library.model.Magazine;
 
 public class LibraryControl {
-    private static final int EXIT = 0;
-    private static final int ADD_BOOK = 1;
-    private static final int ADD_MAGAZINE = 2;
-    private static final int PRINT_BOOKS = 3;
-    private static final int PRINT_MAGAZINES = 4;
+    private final int exit = 0;
+    private final int addBook = 1;
+    private final int printBooks = 2;
     private DataReader dataReader = new DataReader();
     private Library library = new Library();
     
@@ -21,34 +18,26 @@ public class LibraryControl {
             printOptions();
             option = dataReader.getInt();
             switch (option) {
-                case ADD_BOOK:
+                case addBook:
                     addBook();
                     break;
-                case PRINT_BOOKS:
+                case printBooks:
                     printBooks();
                     break;
-                case ADD_MAGAZINE:
-                    addMagazine();
-                    break;
-                case PRINT_MAGAZINES:
-                    printMagazines();
-                    break;
-                case EXIT:
+                case exit:
                     exit();
                     break;
                 default:
                     System.out.println("Nie ma takiej opcji, wprowadź ponownie.");
             }
-        } while (option != EXIT);
+        } while (option != exit);
     }
 
     private void printOptions() {
         System.out.println("Wybierz opcję:");
-        System.out.println(EXIT + " - wyjście z programu");
-        System.out.println(ADD_BOOK + " - dodanie nowej książki");
-        System.out.println(ADD_MAGAZINE + " - dodanie nowego magazynu");
-        System.out.println(PRINT_BOOKS + " - wyświetl dostępne książki");
-        System.out.println(PRINT_MAGAZINES + " - wyświetl dostępne magazyny");
+        System.out.println(exit + " - wyjście z programu");
+        System.out.println(addBook + " - dodanie nowej książki");
+        System.out.println(printBooks + " - wyświetl dostępne książki");
     }
 
     private void printBooks() {
@@ -58,15 +47,6 @@ public class LibraryControl {
     private void addBook() {
         Book book = dataReader.readAndCreateBook();
         library.addBook(book);
-    }
-
-    private void addMagazine() {
-        Magazine magazine = dataReader.readAndCreateMagazine();
-        library.addMagazine(magazine);
-    }
-
-    private void printMagazines() {
-        library.printMagazines();
     }
 
 
