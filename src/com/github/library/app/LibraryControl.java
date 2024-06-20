@@ -40,7 +40,7 @@ public class LibraryControl {
     private void printOptions() {
         System.out.println("Wybierz opcję:");
         for (Option value : Option.values()) {
-            System.out.println(value);1
+            System.out.println(value);
         }
     }
 
